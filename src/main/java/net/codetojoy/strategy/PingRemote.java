@@ -1,6 +1,7 @@
 package net.codetojoy.strategy;
 
 import net.codetojoy.Constants;
+import net.codetojoy.http.Web;
 
 import java.util.List;
 import java.util.stream.*;
@@ -9,14 +10,16 @@ import java.net.URI;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.apache.http.client.utils.URIBuilder;
+/*
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+*/
 
 public class PingRemote {
     private final String scheme;
@@ -41,21 +44,11 @@ public class PingRemote {
 
         try {
             var uri = buildPingURI();
-
-            var request = new HttpGet(uri);
-
-            try (CloseableHttpClient httpClient = HttpClients.createDefault();
-                CloseableHttpResponse response = httpClient.execute(request)) {
-
-                var entity = response.getEntity();
-                if (entity != null) {
-                    String resultStr = EntityUtils.toString(entity);
-                    var pingResult = buildPingResult(resultStr);
-                    var message = pingResult.getMessage();
-                    if (!message.trim().isEmpty()) {
-                        cachedPingValue = true;
-                    }
-                }
+            var result = new Web().get(uri);
+            var pingResult = buildPingResult(result);
+            var message = pingResult.getMessage();
+            if (message != null && (! message.trim().isEmpty())) {
+                cachedPingValue = true;
             }
         } catch (Exception ex) {
             System.err.println("error on ping: " + ex.getMessage());
