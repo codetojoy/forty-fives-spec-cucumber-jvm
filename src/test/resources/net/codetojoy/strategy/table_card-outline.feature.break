@@ -1,0 +1,15 @@
+Feature: illustrate tables
+
+  boilerplate here
+
+  Scenario outline: Cucumber Data Table
+    Given prizeCard: <prizeCard> maxCard: <maxCard> cards: <cards> mode: <mode>
+    When I select card
+    Then card selection should be <expected>
+
+    Examples:
+    | prizeCard | maxCard | cards       | mode    | expected |
+    | 10        | 20      | 2,4,6       | max     | 6 |
+    | 10        | 20      | 2,4,6       | min     | 2|
+    | 10        | 20      | 4,6,2       | next    | 4 |
+    | 10        | 20      | 4,3,8,14,20 | nearest | 8 |
