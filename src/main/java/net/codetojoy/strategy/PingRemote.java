@@ -3,23 +3,10 @@ package net.codetojoy.strategy;
 import net.codetojoy.Constants;
 import net.codetojoy.http.Web;
 
-import java.util.List;
-import java.util.stream.*;
-import java.io.IOException;
 import java.net.URI;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.apache.http.client.utils.URIBuilder;
-/*
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpHeaders;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
-*/
 
 public class PingRemote {
     private final String scheme;
