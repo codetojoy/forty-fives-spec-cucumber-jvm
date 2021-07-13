@@ -1,4 +1,4 @@
-package net.codetojoy.strategy.utils;
+package net.codetojoy.utils;
 
 public class Integers {
     public Integer parseInt(String s) {

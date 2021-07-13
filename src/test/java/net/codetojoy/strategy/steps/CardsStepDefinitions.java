@@ -1,7 +1,7 @@
 package net.codetojoy.strategy.steps;
 
 import static net.codetojoy.Constants.*;
-import net.codetojoy.strategy.utils.*;
+import net.codetojoy.utils.*;
 import net.codetojoy.strategy.*;
 
 import io.cucumber.java.en.*;

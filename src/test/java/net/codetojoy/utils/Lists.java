@@ -1,4 +1,4 @@
-package net.codetojoy.strategy.utils;
+package net.codetojoy.utils;
 
 import java.util.*;
 
