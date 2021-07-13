@@ -18,8 +18,8 @@ public class FortyFivesStepDefinitions {
     private String cards;
     private String actual;
 
-    private final Integers integers = new Integers();
     private final Lists lists = new Lists();
+    private final Strings strings = new Strings();
 
     @Given("trump: {string} leading: {string} cards: {string}")
     public void givenInitialInput(String trump,
@@ -33,6 +33,11 @@ public class FortyFivesStepDefinitions {
         this.trump = trump;
         this.leading = leading;
         this.cards = cardsStr;
+    }
+
+    @And("I shuffle")
+    public void iShuffle() {
+        cards = strings.shuffleCards(cards);
     }
 
     @When("I sort cards by rank")
