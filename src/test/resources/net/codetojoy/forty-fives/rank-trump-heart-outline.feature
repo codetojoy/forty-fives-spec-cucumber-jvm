@@ -2,7 +2,7 @@ Feature: test rank
 
   Test the ranking of cards (either trump or otherwise)
 
-  Scenario Outline: Clubs as Trump
+  Scenario Outline: Hearts as Trump
     Given trump: <trump> leading: <leading> cards: <cards>
     And I shuffle
     When I sort cards by rank
@@ -10,4 +10,4 @@ Feature: test rank
 
     Examples:
     | trump | leading | cards         | expected |
-    | "C"   | "U"     | "10C,9C,8C,7C,6C,5C,4C,3C,2C,AC,JC,QC,KC,AH" | "5C,JC,AH,AC,KC,QC,2C,3C,4C,6C,7C,8C,9C,10C" |
+    | "H"   | "U"     | "10H,9H,8H,7H,6H,5H,4H,3H,2H,AH,JH,QH,KH" | "5H,JH,AH,KH,QH,10H,9H,8H,7H,6H,4H,3H,2H" | 
