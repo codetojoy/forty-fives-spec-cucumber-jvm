@@ -8,6 +8,7 @@ import java.util.*;
 
 public class Runner {
     void run() {
+        /*
         var scheme = Constants.SCHEME;
         var host = Constants.HOST;
         var path = Constants.PATH;
@@ -21,6 +22,8 @@ public class Runner {
         var strategy = new ApiRemote(scheme, host, path, mode);
         var card = strategy.selectCard(prizeCard, hand, maxCard);
         System.out.println("TRACER card: " + card);
+        */
+        System.out.println("TRACER no-op");
     }
 
     public static void main(String[] args) {
