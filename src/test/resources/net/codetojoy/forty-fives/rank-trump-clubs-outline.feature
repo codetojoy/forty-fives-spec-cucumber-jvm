@@ -11,3 +11,7 @@ Feature: test rank
     Examples:
     | trump | leading | cards         | expected |
     | "C"   | "U"     | "10C,9C,8C,7C,6C,5C,4C,3C,2C,AC,JC,QC,KC,AH" | "5C,JC,AH,AC,KC,QC,2C,3C,4C,6C,7C,8C,9C,10C" |
+    | "C"   | "C"     | "10C,9C,8C,7C,6C,5C,4C,3C,2C,AC,JC,QC,KC,AH" | "5C,JC,AH,AC,KC,QC,2C,3C,4C,6C,7C,8C,9C,10C" |
+    | "C"   | "D"     | "10C,9C,8C,7C,6C,5C,4C,3C,2C,AC,JC,QC,KC,AH" | "5C,JC,AH,AC,KC,QC,2C,3C,4C,6C,7C,8C,9C,10C" |
+    | "C"   | "H"     | "10C,9C,8C,7C,6C,5C,4C,3C,2C,AC,JC,QC,KC,AH" | "5C,JC,AH,AC,KC,QC,2C,3C,4C,6C,7C,8C,9C,10C" |
+    | "C"   | "S"     | "10C,9C,8C,7C,6C,5C,4C,3C,2C,AC,JC,QC,KC,AH" | "5C,JC,AH,AC,KC,QC,2C,3C,4C,6C,7C,8C,9C,10C" |
