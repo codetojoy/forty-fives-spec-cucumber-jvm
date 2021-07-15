@@ -1,29 +1,18 @@
 
 package net.codetojoy;
 
-import net.codetojoy.strategy.*;
+import net.codetojoy.fortyfives.PingRemote;
 
 import java.util.*;
-// import java.util.stream.*;
 
 public class Runner {
     void run() {
-        /*
         var scheme = Constants.SCHEME;
-        var host = Constants.HOST;
-        var path = Constants.PATH;
-        var mode = Constants.MODE;
+        var host = Constants.FORTY_FIVES_HOST;
+        var path = Constants.FORTY_FIVES_PING_PATH;
 
-        var prizeCard = 7;
-        var cards = List.of(2,4,6,8,10);
-        var hand = cards.stream().mapToInt(Integer::intValue);
-        var maxCard = 18;
-
-        var strategy = new ApiRemote(scheme, host, path, mode);
-        var card = strategy.selectCard(prizeCard, hand, maxCard);
-        System.out.println("TRACER card: " + card);
-        */
-        System.out.println("TRACER no-op");
+        var pingRemote = new PingRemote(scheme, host, path);
+        System.out.println("TRACER ping: " + pingRemote.ping());
     }
 
     public static void main(String[] args) {

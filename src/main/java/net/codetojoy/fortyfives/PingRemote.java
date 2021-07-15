@@ -1,4 +1,4 @@
-package net.codetojoy.strategy;
+package net.codetojoy.fortyfives;
 
 import net.codetojoy.Constants;
 import net.codetojoy.http.Web;

@@ -3,7 +3,6 @@ package net.codetojoy.fortyfives.steps;
 import static net.codetojoy.Constants.*;
 import net.codetojoy.utils.*;
 import net.codetojoy.fortyfives.*;
-import net.codetojoy.strategy.PingRemote;
 
 import io.cucumber.java.en.*;
 
@@ -21,14 +20,19 @@ public class FortyFivesStepDefinitions {
     private final Lists lists = new Lists();
     private final Strings strings = new Strings();
 
+    private static boolean didPing = false;
+    private static PingRemote pingRemote = new PingRemote(SCHEME, FORTY_FIVES_HOST, FORTY_FIVES_PING_PATH);
+
     @Given("trump: {string} leading: {string} cards: {string}")
     public void givenInitialInput(String trump,
                                   String leading,
                                   String cardsStr) {
-        // TODO: find a better home for this:
-        var pingRemote = new PingRemote(SCHEME, FORTY_FIVES_HOST, FORTY_FIVES_PING_PATH);
-        if (!pingRemote.ping()) {
-           throw new IllegalStateException("server not running");
+        // TODO: find a better home for pinging:
+        if (!didPing) {
+            if (!pingRemote.ping()) {
+               throw new IllegalStateException("server not running");
+            } 
+            didPing = true;
         }
         this.trump = trump;
         this.leading = leading;
