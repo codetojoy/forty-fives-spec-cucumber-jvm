@@ -2,7 +2,7 @@ Feature: test rank
 
   Test the ranking of cards (either trump or otherwise)
 
-  Scenario Outline: Clubs as Trump
+  Scenario Outline: diamonds offsuit
     Given trump: <trump> leading: <leading> cards: <cards>
     And I shuffle
     When I sort cards by rank
