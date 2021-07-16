@@ -33,3 +33,18 @@ Feature: test rank
     | "H"   | "D"     | "5H,AH,5D,AD,JH"  | "5H,JH,AH,5D,AD" |
     | "H"   | "S"     | "5H,AH,5D,AD,JH"  | "5H,JH,AH,5D,AD" |
     | "D"   | "U"     | "5H,AH,5D,AD,JH"  | "5D,AH,AD,JH,5H" |
+#
+    | "S"   | "U"     | "4H,8D,10C,9D,8S" | "8S,9D,8D,4H,10C" |
+    | "S"   | "C"     | "4H,8D,10C,9D,8S" | "8S,10C,9D,8D,4H" |
+    | "S"   | "D"     | "4H,8D,10C,9D,8S" | "8S,9D,8D,4H,10C" |
+    | "S"   | "H"     | "4H,8D,10C,9D,8S" | "8S,4H,9D,8D,10C" |
+    | "H"   | "U"     | "4H,8D,10C,9D,8S" | "4H,9D,8D,8S,10C" |
+
+
+
+
+
+
+
+
+
