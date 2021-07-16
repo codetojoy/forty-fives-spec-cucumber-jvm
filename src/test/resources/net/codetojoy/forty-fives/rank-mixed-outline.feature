@@ -27,3 +27,9 @@ Feature: test rank
     | "H"   | "D"     | "2D,5C,8H,AS,KC"  | "8H,2D,KC,AS,5C" |
     | "H"   | "S"     | "2D,5C,8H,AS,KC"  | "8H,AS,KC,5C,2D" |
     | "C"   | "U"     | "2D,5C,8H,AS,KC"  | "5C,KC,AS,8H,2D" |
+#
+    | "H"   | "U"     | "5H,AH,5D,AD,JH"  | "5H,JH,AH,5D,AD" |
+    | "H"   | "C"     | "5H,AH,5D,AD,JH"  | "5H,JH,AH,5D,AD" |
+    | "H"   | "D"     | "5H,AH,5D,AD,JH"  | "5H,JH,AH,5D,AD" |
+    | "H"   | "S"     | "5H,AH,5D,AD,JH"  | "5H,JH,AH,5D,AD" |
+    | "D"   | "U"     | "5H,AH,5D,AD,JH"  | "5D,AH,AD,JH,5H" |
