@@ -4,9 +4,9 @@ Feature: test get candidates
 
   Scenario Outline: Get Candidates for Hand
     Given trump: <trump> leading: <leading> played: <played> cards: <cards>
-    And 2 I shuffle
+    And I shuffle
     When I filter for candidates
-    Then 2 cards should be <expected>
+    Then cards should be <expected>
 
     Examples:
     | trump | leading | played | cards             | expected |
