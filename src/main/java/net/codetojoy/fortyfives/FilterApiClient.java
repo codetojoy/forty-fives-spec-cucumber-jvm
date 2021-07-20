@@ -10,22 +10,22 @@ import java.net.URI;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.utils.URIBuilder;
 
-public class ApiClient {
+public class FilterApiClient {
     private final String scheme;
     private final String host;
     private final String path;
 
-    public ApiClient(String scheme, String host, String path) {
+    public FilterApiClient(String scheme, String host, String path) {
         this.scheme = scheme;
         this.host = host;
         this.path = path;
     }
 
-    public String rankCards(String trump, String leading, String cards) {
+    public String filterCandidates(String trump, String leading, boolean trumpPlayed, String cards) {
         var result = "";
 
         try {
-             result = apiRankCards(trump, leading, cards);
+             result = apiFilterCards(trump, leading, trumpPlayed, cards);
         } catch (Exception ex) {
             System.err.println("ERROR caught exception: " + ex.getMessage());
             result = ex.getMessage();
@@ -36,8 +36,8 @@ public class ApiClient {
         return result;
     }
 
-    private String apiRankCards(String trump, String leading, String cards) throws Exception {
-        var uri = buildURI(trump, leading, cards);
+    private String apiFilterCards(String trump, String leading, boolean trumpPlayed, String cards) throws Exception {
+        var uri = buildURI(trump, leading, trumpPlayed, cards);
         var result = new Web().get(uri);
         var apiResult = buildResult(result);
         var newCards = apiResult.getCards();
@@ -45,7 +45,7 @@ public class ApiClient {
         return newCards;
     }
 
-    private URI buildURI(String trump, String leading, String cards) throws Exception {
+    private URI buildURI(String trump, String leading, boolean trumpPlayed, String cards) throws Exception {
         URIBuilder builder = new URIBuilder();
 
         builder.setScheme(scheme)
@@ -53,6 +53,7 @@ public class ApiClient {
                .setPath(path)
                .setParameter(Constants.TRUMP_PARAM, trump)
                .setParameter(Constants.LEADING_PARAM, leading)
+               .setParameter(Constants.TRUMP_PLAYED_PARAM, "" + trumpPlayed)
                .setParameter(Constants.CARDS_PARAM, cards);
 
         URI uri = builder.build();
