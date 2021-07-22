@@ -1,11 +1,8 @@
 package net.codetojoy.fortyfives.steps.impl;
 
 import static net.codetojoy.Constants.*;
-import net.codetojoy.utils.*;
-import net.codetojoy.fortyfives.*;
-
-import java.time.*;
-import java.util.*;
+import net.codetojoy.utils.Strings;
+import net.codetojoy.fortyfives.FilterApiClient;
 
 import static org.junit.Assert.*;
 
