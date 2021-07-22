@@ -3,6 +3,7 @@ package net.codetojoy.fortyfives.steps;
 import static net.codetojoy.Constants.*;
 import net.codetojoy.utils.*;
 import net.codetojoy.fortyfives.*;
+import net.codetojoy.fortyfives.steps.impl.*;
 
 import io.cucumber.java.en.*;
 
@@ -12,17 +13,14 @@ import java.util.*;
 import static org.junit.Assert.*;
 
 public class FortyFivesStepDefinitions {
-    private String trump;
-    private String leading;
-    private String cards;
-    private boolean trumpPlayed;
-    private String actual;
+    private RankSteps rankSteps = new RankSteps();
+    private FilterSteps filterSteps = new FilterSteps();
 
-    // private final Lists lists = new Lists();
-    private final Strings strings = new Strings();
+    private static final String MODE_FILTER = "filter";
+    private static final String MODE_RANK = "rank";
+    private static final String MODE_UNKNOWN = "unknown";
 
-    // private static boolean didPing = false;
-    // private static PingRemote pingRemote = new PingRemote(SCHEME, FORTY_FIVES_HOST, FORTY_FIVES_PING_PATH);
+    private String mode = MODE_UNKNOWN;
 
     static {
         var pingRemote = new PingRemote(SCHEME, FORTY_FIVES_HOST, FORTY_FIVES_PING_PATH);
@@ -35,9 +33,8 @@ public class FortyFivesStepDefinitions {
     public void givenInitialInput(String trump,
                                   String leading,
                                   String cardsStr) {
-        this.trump = trump;
-        this.leading = leading;
-        this.cards = cardsStr;
+        mode = MODE_RANK;
+        rankSteps.givenInitialInput(trump, leading, cardsStr);
     }
 
     @Given("trump: {string} leading: {string} played: {} cards: {string}")
@@ -45,29 +42,37 @@ public class FortyFivesStepDefinitions {
                                   String leading,
                                   boolean trumpPlayed,
                                   String cardsStr) {
-        givenInitialInput(trump, leading, cardsStr);
-        this.trumpPlayed = trumpPlayed;
+        mode = MODE_FILTER;
+        filterSteps.givenInitialInput(trump, leading, trumpPlayed, cardsStr);
     }
 
     @And("I shuffle")
     public void iShuffle() {
-        cards = strings.shuffleCards(cards);
+        if (mode.equals(MODE_RANK)) {
+            rankSteps.iShuffle();
+        } else if (mode.equals(MODE_FILTER)) {
+            filterSteps.iShuffle();
+        }
     }
 
     @When("I sort cards by rank")
     public void iSelectCard() {
-        var apiClient = new ApiClient(SCHEME, FORTY_FIVES_HOST, RANK_PATH);
-        actual = apiClient.rankCards(trump, leading, cards);
+        assertEquals((String) MODE_RANK, (String) mode);
+        rankSteps.iSelectCard();
     }
 
     @When("I filter for candidates")
     public void iFilterCandidates() {
-        var filterClient = new FilterApiClient(SCHEME, FORTY_FIVES_HOST, FILTER_PATH);
-        actual = filterClient.filterCandidates(trump, leading, trumpPlayed, cards);
+        assertEquals((String) MODE_FILTER, (String) mode);
+        filterSteps.iFilterCandidates();
     }
 
     @Then("cards should be {string}")
     public void cardRankShouldBe(String expected) {
-        assertEquals((String) expected, (String) actual);
+        if (mode.equals(MODE_RANK)) {
+            rankSteps.cardRankShouldBe(expected);
+        } else if (mode.equals(MODE_FILTER)) {
+            filterSteps.cardRankShouldBe(expected);
+        }
     }
 }
