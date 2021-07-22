@@ -2,7 +2,7 @@ package net.codetojoy.fortyfives.steps.impl;
 
 import static net.codetojoy.Constants.*;
 import net.codetojoy.utils.Strings;
-import net.codetojoy.fortyfives.ApiClient;
+import net.codetojoy.fortyfives.RankApiClient;
 
 import static org.junit.Assert.*;
 
@@ -27,7 +27,7 @@ public class RankSteps {
     }
 
     public void iSelectCard() {
-        var apiClient = new ApiClient(SCHEME, FORTY_FIVES_HOST, RANK_PATH);
+        var apiClient = new RankApiClient(SCHEME, FORTY_FIVES_HOST, RANK_PATH);
         actual = apiClient.rankCards(trump, leading, cards);
     }
 

@@ -10,12 +10,12 @@ import java.net.URI;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.utils.URIBuilder;
 
-public class ApiClient {
+public class RankApiClient {
     private final String scheme;
     private final String host;
     private final String path;
 
-    public ApiClient(String scheme, String host, String path) {
+    public RankApiClient(String scheme, String host, String path) {
         this.scheme = scheme;
         this.host = host;
         this.path = path;
